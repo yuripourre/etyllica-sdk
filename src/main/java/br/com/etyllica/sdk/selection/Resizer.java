@@ -14,60 +14,41 @@ import br.com.etyllica.layer.GeometricLayer;
 public class Resizer {
 
 	private GeometricLayer selected;
-	
+
 	private ResizerPoint selectedArea;
-		
+
 	private ResizerPoint[] points;
-	
+
 	private MouseStateChanger changer;
-	
-	private int buttonSize = 20;
-	
+
+	private int buttonSize = 30;
+
 	private final DashedStroke dash = new DashedStroke();
-	
+
 	private final BasicStroke resetStroke = new BasicStroke(1);
+
+	private boolean dragged = false;
+
+	private int initialX = 0;
+	private int initialY = 0;
+	private int initialW = 0;
+	private int initialH = 0;
 	
+	private int lastIndex = 0;
+
 	public Resizer(MouseStateChanger context) {
 		super();
-		
+
 		changer = context;
-		
-		points = new ResizerPoint[8];
+
+		points = new ResizerPoint[9];
 		for(int i=0;i<8; i++)
 			points[i] = new ResizerPoint(0, 0, 1, 1);
-		
+
 		selectedArea = new ResizerPoint(0, 0, 1, 1);
 		selectedArea.setState(MouseState.MOVE);
-	}
-	
-	public void reselect() {
-		select(selected);
-	}
-	
-	public void select(GeometricLayer selected) {
 		
-		this.selected = selected;
-		
-		selectedArea.copy(selected);
-		
-		int inc = 0;
-		
-		for(int b=0; b<9; b++) {
-			
-			int i = b%3;
-			int j = b/3;
-
-			if(i==1 && j==1) {
-				inc = -1;
-				continue;
-			}
-			
-			int bx = selected.getX()+i*(selected.getW()/2) - buttonSize/2;
-			int by = selected.getY()+j*(selected.getH()/2) - buttonSize/2;
-
-			points[b+inc].setBounds(bx, by, buttonSize, buttonSize);
-						
-		}
+		points[8] = selectedArea;
 		
 		points[0].setState(MouseState.ARROW_NW_SE);
 		points[1].setState(MouseState.ARROW_VERTICAL);
@@ -76,90 +57,197 @@ public class Resizer {
 		points[4].setState(MouseState.ARROW_HORIZONTAL);
 		points[5].setState(MouseState.ARROW_NE_SW);
 		points[6].setState(MouseState.ARROW_VERTICAL);
-		points[7].setState(MouseState.ARROW_NW_SE);		
+		points[7].setState(MouseState.ARROW_NW_SE);
+		points[8].setState(MouseState.MOVE);
+	}
+
+	public void reselect() {
+		select(selected);
+	}
+
+	public void deselect() {
+		this.selected = null;
 		
+		changer.changeMouseState(MouseState.NORMAL);
 	}
 	
+	public void select(GeometricLayer selected) {
+
+		if(selected == null) {
+			deselect();
+		}
+		
+		this.selected = selected;
+
+		selectedArea.copy(selected);
+
+		int inc = 0;
+
+		//Update 8 points
+		for(int b=0; b<9; b++) {
+
+			int i = b%3;
+			int j = b/3;
+
+			if(i==1 && j==1) {
+				inc = -1;
+				continue;
+			}
+
+			int bx = selected.getX()+i*(selected.getW()/2) - buttonSize/2;
+			int by = selected.getY()+j*(selected.getH()/2) - buttonSize/2;
+
+			points[b+inc].setBounds(bx, by, buttonSize, buttonSize);
+		}
+
+	}
+
 	public void draw(Graphic g) {
 
 		if(selected == null)
 			return;
-		
+
 		g.setColor(Color.BLACK);
 
 		g.setStroke(dash);
 
 		g.drawRect(selected);
 
-		for(ResizerPoint point: points) {
+		for(int b=0; b < 8; b++) {
 
-			g.fillRect(point);
+			points[b].draw(g);
 		}
-		
+
 		g.setStroke(resetStroke);
 	}
-
+	
+	private boolean changed = false;
+	
 	public void handleEvent(PointerEvent event) {
-		
+
 		if(selected == null)
 			return;
-		
+
 		int mx = event.getX();
 		int my = event.getY();
 
-		boolean changed = false;
+		changed = false;
+		
+		for(int b = 0; b < 9; b++) {
 
-		if(selected.colideRectPoint(mx, my)) {
-			
-			changer.changeMouseState(MouseState.MOVE);
-			
-			moveSelected(event);
-			
-		} else {
+			if(points[b].colideRectPoint(mx, my)) {
+				
+				lastIndex = b;
+				
+				changer.changeMouseState(points[b].getState());
+				changed = true;
 
-			for(int b=0; b < 8; b++) {
-
-				if(points[b].colideRectPoint(mx, my)) {
-					changer.changeMouseState(points[b].getState());
-					changed = true;
-				}
-						
+				handleDragEvent(event);
+				
+				break;
 			}
 		}
 		
+		if(dragged && event.isDraggedButton(MouseButton.MOUSE_BUTTON_LEFT)) {
+				resizeEvent(lastIndex, event);
+		}
+
 		if(!changed) {
 			changer.changeMouseState(MouseState.NORMAL);
 		}
-		
-	}
-	
-	private boolean dragged = false;
-	
-	private int initialX = 0;
-	private int initialY = 0;
-	
-	private void moveSelected(PointerEvent event) {
-		
-		if(event.isDraggedButton(MouseButton.MOUSE_BUTTON_LEFT)) {
-			
-			if(!dragged) {
-				initialX = selected.getX();
-				initialY = selected.getY();
-						
-				dragged = true;
-			}
-			
-			selected.setX(initialX+event.getAmountX());
-			selected.setY(initialY+event.getAmountY());
-			
-			reselect();
-		}
-		
-		if(dragged && event.isButtonUp(MouseButton.MOUSE_BUTTON_LEFT)) {
 
-			dragged = false;			
+	}
+
+	private void resizeEvent(int index, PointerEvent event) {
+		switch (index) {
+		case 0:
+			resizeUp(event);
+			resizeLeft(event);
+			break;
+			
+		case 1:
+			resizeUp(event);
+			break;
+			
+		case 2:
+			resizeUp(event);
+			resizeRight(event);
+			break;
+
+		case 3:
+			resizeLeft(event);
+			break;
+			
+		case 4:
+			resizeRight(event);
+			break;
+			
+		case 5:
+			resizeDown(event);
+			resizeLeft(event);
+			break;
+			
+		case 6:
+			resizeDown(event);
+			break;
+			
+		case 7:
+			resizeDown(event);
+			resizeRight(event);
+			break;
+
+		default:
+			moveSelected(event);
+			break;
 		}
 		
+		reselect();
+	}
+
+	private void handleDragEvent(PointerEvent event) {
+
+		if(!dragged && event.isDraggedButton(MouseButton.MOUSE_BUTTON_LEFT)) {
+
+			initialX = selected.getX();
+			initialY = selected.getY();
+			initialW = selected.getW();
+			initialH = selected.getH();
+
+			dragged = true;
+		}
+
+		if(event.isButtonUp(MouseButton.MOUSE_BUTTON_LEFT)) {
+			dragged = false;
+		}
+
+	}
+
+	private void moveSelected(PointerEvent event) {
+		selected.setX(initialX+event.getAmountX());
+		selected.setY(initialY+event.getAmountY());
+	}
+
+	private void resizeUp(PointerEvent event) {
+
+		selected.setY(initialY+event.getAmountY());
+		selected.setH(initialH-event.getAmountY());
+	}
+
+	private void resizeDown(PointerEvent event) {
+		selected.setH(initialH+event.getAmountY());
+	}
+
+	private void resizeLeft(PointerEvent event) {
+		selected.setX(initialX+event.getAmountX());
+		selected.setW(initialW-event.getAmountX());
 	}
 	
+	private void resizeRight(PointerEvent event) {
+		selected.setW(initialW+event.getAmountX());
+	}
+	
+	public boolean isDragged() {
+		return dragged||changed;
+	}
+
 }

@@ -14,7 +14,7 @@ public class ResizerPoint extends GeometricLayer {
 	
 	//Draw with half size
 	public void draw(Graphic g) {
-		g.fillRect(x+w/2, y+h/2, w-w/2, h-h/2);
+		g.fillRect(x+w/4, y+h/4, w/2, h/2);
 	}
 
 	public MouseState getState() {

@@ -22,7 +22,7 @@ public class ResizerApplication extends Application {
 	private GeometricLayer redComponent;
 	
 	private GeometricLayer yellowComponent;
-
+	
 	public ResizerApplication(int w, int h) {
 		super(w, h);
 	}
@@ -77,8 +77,6 @@ public class ResizerApplication extends Application {
 		int mx = event.getX();
 		int my = event.getY();
 
-		resizer.handleEvent(event);
-
 		if(blueComponent.colideRectPoint(mx, my)) {
 			overlay = blueComponent;
 		} else if(redComponent.colideRectPoint(mx, my)) {
@@ -92,13 +90,24 @@ public class ResizerApplication extends Application {
 		if(event.isButtonDown(MouseButton.MOUSE_BUTTON_LEFT)) {
 
 			if(blueComponent.colideRectPoint(mx, my)) {
+				
 				resizer.select(blueComponent);
-			}
-
-			if(redComponent.colideRectPoint(mx, my)) {
+				
+			} else if(redComponent.colideRectPoint(mx, my)) {
+				
 				resizer.select(redComponent);
-			}			
+				
+			}  else if(yellowComponent.colideRectPoint(mx, my)) {
+				
+				resizer.select(yellowComponent);
+				
+			} else if(!resizer.isDragged()) {
+				
+				resizer.deselect();
+			}
 		}
+		
+		resizer.handleEvent(event);
 
 		return null;
 	}
