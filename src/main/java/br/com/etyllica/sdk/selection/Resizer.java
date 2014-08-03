@@ -33,9 +33,15 @@ public class Resizer {
 		changer = context;
 		
 		points = new ResizerPoint[8];
+		for(int i=0;i<8; i++)
+			points[i] = new ResizerPoint(0, 0, 1, 1);
 		
 		selectedArea = new ResizerPoint(0, 0, 1, 1);
 		selectedArea.setState(MouseState.MOVE);
+	}
+	
+	public void reselect() {
+		select(selected);
 	}
 	
 	public void select(GeometricLayer selected) {
@@ -59,7 +65,7 @@ public class Resizer {
 			int bx = selected.getX()+i*(selected.getW()/2) - buttonSize/2;
 			int by = selected.getY()+j*(selected.getH()/2) - buttonSize/2;
 
-			points[b+inc] = new ResizerPoint(bx, by, buttonSize, buttonSize);
+			points[b+inc].setBounds(bx, by, buttonSize, buttonSize);
 						
 		}
 		
@@ -129,20 +135,29 @@ public class Resizer {
 	
 	private boolean dragged = false;
 	
+	private int initialX = 0;
+	private int initialY = 0;
+	
 	private void moveSelected(PointerEvent event) {
 		
 		if(event.isDraggedButton(MouseButton.MOUSE_BUTTON_LEFT)) {
-			dragged = true;
 			
-			selected.setX(selectedArea.getX()+event.getAmountX());
+			if(!dragged) {
+				initialX = selected.getX();
+				initialY = selected.getY();
+						
+				dragged = true;
+			}
 			
-			selected.setY(selectedArea.getY()+event.getAmountY());
+			selected.setX(initialX+event.getAmountX());
+			selected.setY(initialY+event.getAmountY());
 			
-		} else if(dragged) {
-			dragged = false;
-			
-			selectedArea.setCoordinates(selected.getX(), selected.getY());
-			
+			reselect();
+		}
+		
+		if(dragged && event.isButtonUp(MouseButton.MOUSE_BUTTON_LEFT)) {
+
+			dragged = false;			
 		}
 		
 	}

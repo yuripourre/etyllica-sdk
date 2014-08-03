@@ -32,8 +32,8 @@ public class GUIExamples extends EtyllicaFrame {
 	public Application startApplication() {
 		
 		//return new ThemeChanger(w, h);
-		//return new ResizerApplication(w, h);
-		return new AccessibilityApplication(w, h);
+		return new ResizerApplication(w, h);
+		//return new AccessibilityApplication(w, h);
 		//return new MouseStateApplication(w, h);
 		
 		//Themes

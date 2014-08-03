@@ -20,6 +20,8 @@ public class ResizerApplication extends Application {
 	private GeometricLayer blueComponent;
 
 	private GeometricLayer redComponent;
+	
+	private GeometricLayer yellowComponent;
 
 	public ResizerApplication(int w, int h) {
 		super(w, h);
@@ -33,6 +35,8 @@ public class ResizerApplication extends Application {
 		blueComponent = new GeometricLayer(40, 100, 200, 80);
 
 		redComponent = new GeometricLayer(40, 200, 200, 80);
+		
+		yellowComponent = new GeometricLayer(300, 100, 200, 80);
 	}
 
 	@Override
@@ -43,6 +47,11 @@ public class ResizerApplication extends Application {
 
 		g.setColor(Color.RED);
 		g.drawRect(redComponent);
+		
+		g.setColor(Color.YELLOW);
+		g.fillRect(yellowComponent);
+		g.setColor(Color.BLACK);
+		g.drawRect(yellowComponent);
 
 		drawOverlay(g);
 		
@@ -66,7 +75,7 @@ public class ResizerApplication extends Application {
 	public GUIEvent updateMouse(PointerEvent event) {
 
 		int mx = event.getX();
-		int my = event.getX();
+		int my = event.getY();
 
 		resizer.handleEvent(event);
 
@@ -74,7 +83,9 @@ public class ResizerApplication extends Application {
 			overlay = blueComponent;
 		} else if(redComponent.colideRectPoint(mx, my)) {
 			overlay = redComponent;
-		} else {
+		} else if(yellowComponent.colideRectPoint(mx, my)) {
+			overlay = yellowComponent;
+		}else {
 			overlay = null;
 		}
 		
