@@ -20,9 +20,9 @@ public class ResizerApplication extends Application {
 	private GeometricLayer blueComponent;
 
 	private GeometricLayer redComponent;
-	
+
 	private GeometricLayer yellowComponent;
-	
+
 	public ResizerApplication(int w, int h) {
 		super(w, h);
 	}
@@ -35,7 +35,7 @@ public class ResizerApplication extends Application {
 		blueComponent = new GeometricLayer(40, 100, 200, 80);
 
 		redComponent = new GeometricLayer(40, 200, 200, 80);
-		
+
 		yellowComponent = new GeometricLayer(300, 100, 200, 80);
 	}
 
@@ -47,16 +47,16 @@ public class ResizerApplication extends Application {
 
 		g.setColor(Color.RED);
 		g.drawRect(redComponent);
-		
+
 		g.setColor(Color.YELLOW);
 		g.fillRect(yellowComponent);
 		g.setColor(Color.BLACK);
 		g.drawRect(yellowComponent);
 
 		drawOverlay(g);
-		
+
 		resizer.draw(g);
-		
+
 	}
 
 	private void drawOverlay(Graphic g) {
@@ -77,45 +77,55 @@ public class ResizerApplication extends Application {
 		int mx = event.getX();
 		int my = event.getY();
 
-		if(blueComponent.colideRectPoint(mx, my)) {
-			overlay = blueComponent;
-		} else if(redComponent.colideRectPoint(mx, my)) {
-			overlay = redComponent;
-		} else if(yellowComponent.colideRectPoint(mx, my)) {
-			overlay = yellowComponent;
-		}else {
-			overlay = null;
+		if(!resizer.isSelected()) {
+			if(blueComponent.colideRectPoint(mx, my)) {
+				overlay = blueComponent;
+			} else if(redComponent.colideRectPoint(mx, my)) {
+				overlay = redComponent;
+			} else if(yellowComponent.colideRectPoint(mx, my)) {
+				overlay = yellowComponent;
+			}
 		}
 		
 		if(event.isButtonDown(MouseButton.MOUSE_BUTTON_LEFT)) {
 
-			if(blueComponent.colideRectPoint(mx, my)) {
-				
-				resizer.select(blueComponent);
-				
-			} else if(redComponent.colideRectPoint(mx, my)) {
-				
-				resizer.select(redComponent);
-				
-			}  else if(yellowComponent.colideRectPoint(mx, my)) {
-				
-				resizer.select(yellowComponent);
-				
+			if(!resizer.isSelected()) {
+
+				if(blueComponent.colideRectPoint(mx, my)) {
+
+					resizer.select(blueComponent);
+					overlay = null;
+
+				} else if(redComponent.colideRectPoint(mx, my)) {
+
+					resizer.select(redComponent);
+					overlay = null;
+
+				}  else if(yellowComponent.colideRectPoint(mx, my)) {
+
+					resizer.select(yellowComponent);
+					overlay = null;
+
+				}
+
 			} else if(!resizer.isDragged()) {
-				
-				resizer.deselect();
+
+				resizer.deselect();			
 			}
+
 		}
-		
+
 		resizer.handleEvent(event);
 
-		return null;
+		return GUIEvent.NONE;
 	}
 
 	@Override
 	public GUIEvent updateKeyboard(KeyEvent event) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		resizer.handleKeyEvent(event);
+		
+		return GUIEvent.NONE;
 	}
 
 }
