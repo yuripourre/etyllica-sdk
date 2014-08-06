@@ -125,7 +125,7 @@ public class Resizer {
 	}
 	
 	private boolean changed = false;
-	
+		
 	public void handleEvent(PointerEvent event) {
 
 		if(selected == null)
@@ -135,7 +135,7 @@ public class Resizer {
 		int my = event.getY();
 
 		changed = false;
-		
+				
 		for(int b = 0; b < 9; b++) {
 
 			if(points[b].colideRectPoint(mx, my)) {
@@ -152,8 +152,12 @@ public class Resizer {
 		}
 		
 		if(dragged && event.isDraggedButton(MouseButton.MOUSE_BUTTON_LEFT)) {
-				resizeEvent(lastIndex, event);
-				reselect();
+			resizeEvent(lastIndex, event);
+			reselect();		
+		}
+		
+		if(!changed && event.isClicked(MouseButton.MOUSE_BUTTON_LEFT)) {
+			deselect();
 		}
 
 		if(!changed) {
