@@ -1,6 +1,8 @@
 package examples.gui.resizer;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.etyllica.context.Application;
 import br.com.etyllica.core.event.GUIEvent;
@@ -22,6 +24,8 @@ public class ResizerApplication extends Application {
 	private GeometricLayer redComponent;
 
 	private GeometricLayer yellowComponent;
+	
+	private List<GeometricLayer> components;
 
 	public ResizerApplication(int w, int h) {
 		super(w, h);
@@ -32,11 +36,16 @@ public class ResizerApplication extends Application {
 
 		resizer = new Resizer(this);
 
+		components = new ArrayList<GeometricLayer>();
+				
 		blueComponent = new GeometricLayer(40, 100, 200, 80);
+		components.add(blueComponent);
 
 		redComponent = new GeometricLayer(40, 200, 200, 80);
+		components.add(redComponent);
 
 		yellowComponent = new GeometricLayer(300, 100, 200, 80);
+		components.add(yellowComponent);
 	}
 
 	@Override
@@ -56,7 +65,6 @@ public class ResizerApplication extends Application {
 		drawOverlay(g);
 
 		resizer.draw(g);
-
 	}
 
 	private void drawOverlay(Graphic g) {
@@ -67,8 +75,7 @@ public class ResizerApplication extends Application {
 		g.setColor(Color.BLACK);
 		g.setAlpha(60);
 		g.fillRect(overlay);
-		g.resetOpacity();		
-
+		g.resetOpacity();
 	}
 
 	@Override
@@ -78,39 +85,29 @@ public class ResizerApplication extends Application {
 		int my = event.getY();
 
 		if(!resizer.isSelected()) {
-			if(blueComponent.colideRectPoint(mx, my)) {
-				overlay = blueComponent;
-			} else if(redComponent.colideRectPoint(mx, my)) {
-				overlay = redComponent;
-			} else if(yellowComponent.colideRectPoint(mx, my)) {
-				overlay = yellowComponent;
-			}
+			
+			for(GeometricLayer component: components) {
+				if(component.colideRectPoint(mx, my)) {
+					overlay = component;
+					break;
+				}	
+			}			
 		}
 		
 		if(event.isButtonDown(MouseButton.MOUSE_BUTTON_LEFT)) {
 
 			if(!resizer.isSelected()) {
 
-				if(blueComponent.colideRectPoint(mx, my)) {
-
-					resizer.select(blueComponent);
-					overlay = null;
-
-				} else if(redComponent.colideRectPoint(mx, my)) {
-
-					resizer.select(redComponent);
-					overlay = null;
-
-				}  else if(yellowComponent.colideRectPoint(mx, my)) {
-
-					resizer.select(yellowComponent);
-					overlay = null;
-
+				for(GeometricLayer component: components) {
+					if(component.colideRectPoint(mx, my)) {
+						resizer.select(component);
+						overlay = null;	
+					}
 				}
-
+				
 			} else if(!resizer.isDragged()) {
 
-				resizer.deselect();			
+				resizer.deselect();
 			}
 
 		}
