@@ -13,7 +13,7 @@ import br.com.etyllica.gui.stroke.DashedStroke;
 import br.com.etyllica.layer.GeometricLayer;
 
 public class Resizer {
-	
+
 	private GeometricLayer selected;
 
 	private ResizerPoint selectedArea;
@@ -34,9 +34,9 @@ public class Resizer {
 	private int initialY = 0;
 	private int initialW = 0;
 	private int initialH = 0;
-	
+
 	private int lastIndex = 0;
-	
+
 	private int keyboardSpeed = 1;
 
 	public Resizer(MouseStateChanger context) {
@@ -50,9 +50,9 @@ public class Resizer {
 
 		selectedArea = new ResizerPoint(0, 0, 1, 1);
 		selectedArea.setState(MouseState.MOVE);
-		
+
 		points[8] = selectedArea;
-		
+
 		points[0].setState(MouseState.ARROW_NW_SE);
 		points[1].setState(MouseState.ARROW_VERTICAL);
 		points[2].setState(MouseState.ARROW_NE_SW);
@@ -70,16 +70,16 @@ public class Resizer {
 
 	public void deselect() {
 		this.selected = null;
-		
-		changer.changeMouseState(MouseState.NORMAL);		
+
+		changer.changeMouseState(MouseState.NORMAL);
 	}
-	
+
 	public void select(GeometricLayer selected) {
 
 		if(!isSelected()) {
 			deselect();
 		}
-		
+
 		this.selected = selected;
 
 		selectedArea.copy(selected);
@@ -123,9 +123,9 @@ public class Resizer {
 
 		g.setStroke(resetStroke);
 	}
-	
+
 	private boolean changed = false;
-		
+
 	public void handleEvent(PointerEvent event) {
 
 		if(selected == null)
@@ -135,23 +135,29 @@ public class Resizer {
 		int my = event.getY();
 
 		changed = false;
-				
-		for(int b = 0; b < 9; b++) {
 
-			if(points[b].colideRectPoint(mx, my)) {
-				
-				lastIndex = b;
-				
-				changer.changeMouseState(points[b].getState());
-				changed = true;
+		if(!dragged) {
 
-				handleDragEvent(event);
-				
-				break;
+			for(int b = 0; b < 9; b++) {
+
+				if(points[b].colideRectPoint(mx, my)) {
+
+					lastIndex = b;
+
+					changer.changeMouseState(points[b].getState());
+					changed = true;
+
+					handleDragEvent(event);
+
+					break;
+				}
 			}
 		}
-		
-		if(dragged && event.isDraggedButton(MouseButton.MOUSE_BUTTON_LEFT)) {
+
+
+		if(event.isButtonUp(MouseButton.MOUSE_BUTTON_LEFT)) {
+			dragged = false;
+		} else if(dragged && event.isDraggedButton(MouseButton.MOUSE_BUTTON_LEFT)) {
 			resizeEvent(lastIndex, event);
 			reselect();		
 		}
@@ -172,11 +178,11 @@ public class Resizer {
 			resizeUp(event);
 			resizeLeft(event);
 			break;
-			
+
 		case 1:
 			resizeUp(event);
 			break;
-			
+
 		case 2:
 			resizeUp(event);
 			resizeRight(event);
@@ -185,20 +191,20 @@ public class Resizer {
 		case 3:
 			resizeLeft(event);
 			break;
-			
+
 		case 4:
 			resizeRight(event);
 			break;
-			
+
 		case 5:
 			resizeDown(event);
 			resizeLeft(event);
 			break;
-			
+
 		case 6:
 			resizeDown(event);
 			break;
-			
+
 		case 7:
 			resizeDown(event);
 			resizeRight(event);
@@ -224,7 +230,7 @@ public class Resizer {
 		}
 
 	}
-	
+
 	private void setInitialValues() {
 		initialX = selected.getX();
 		initialY = selected.getY();
@@ -250,25 +256,25 @@ public class Resizer {
 		selected.setX(initialX+event.getAmountX());
 		selected.setW(initialW-event.getAmountX());
 	}
-	
+
 	private void resizeRight(PointerEvent event) {
 		selected.setW(initialW+event.getAmountX());
 	}
-	
+
 	public boolean isDragged() {
 		return dragged||changed;
 	}
-	
+
 	public boolean isSelected() {
 		return selected != null;
 	}
-	
+
 	public GeometricLayer getSelectedLayer() {
 		return selected;
 	}
 
 	public void handleKeyEvent(KeyEvent event) {
-		
+
 		if(event.isKeyDown(KeyEvent.TSK_UP_ARROW)) {
 			selected.setOffsetY(-keyboardSpeed);
 			reselect();
@@ -276,7 +282,7 @@ public class Resizer {
 			selected.setOffsetY(+keyboardSpeed);
 			reselect();
 		}
-		
+
 		if(event.isKeyDown(KeyEvent.TSK_LEFT_ARROW)) {
 			selected.setOffsetX(-keyboardSpeed);
 			reselect();
@@ -284,7 +290,7 @@ public class Resizer {
 			selected.setOffsetX(+keyboardSpeed);
 			reselect();
 		}
-		
+
 	}
-	
+
 }
