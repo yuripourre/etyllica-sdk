@@ -10,8 +10,8 @@ import br.com.etyllica.core.event.KeyEvent;
 import br.com.etyllica.core.event.PointerEvent;
 import br.com.etyllica.core.graphics.Graphic;
 import br.com.etyllica.core.input.mouse.MouseButton;
+import br.com.etyllica.gui.selection.Resizer;
 import br.com.etyllica.layer.GeometricLayer;
-import br.com.etyllica.sdk.selection.Resizer;
 
 public class ResizerApplication extends Application {
 
