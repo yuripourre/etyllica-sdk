@@ -3,11 +3,12 @@ package br.com.etyllica.sdk.component;
 import java.awt.Color;
 
 import br.com.etyllica.core.graphics.Graphic;
+import br.com.etyllica.core.graphics.SVGColor;
 import br.com.etyllica.layer.GeometricLayer;
 
 public class RectangleContainer implements Container {
 
-	private Color color = Color.WHITE;
+	private Color color = SVGColor.TRANSPARENT;
 	
 	private Color borderColor = Color.BLACK;
 	
