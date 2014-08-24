@@ -26,7 +26,7 @@ public class SDKApplication extends Application {
 
 	private RectangleContainer yellowComponent;
 	
-	private List<RectangleContainer> components;
+	private List<Container> components;
 	
 	private Layer overlay = new Layer();
 	
@@ -41,7 +41,7 @@ public class SDKApplication extends Application {
 
 		resizer = new Resizer(this);
 
-		components = new ArrayList<RectangleContainer>();
+		components = new ArrayList<Container>();
 				
 		blueComponent = new RectangleContainer(40, 100, 200, 80);
 		blueComponent.setBorderColor(Color.BLUE);
