@@ -1,9 +1,12 @@
+# Pre-Compiled Files #
 *.class
+/bin
+
+.classpath
+.project
 
 # Package Files #
 *.jar
 *.war
 *.ear
 
-.classpath
-.project
