@@ -2,6 +2,7 @@ package br.com.etyllica.sdk.component;
 
 import java.awt.Color;
 
+import br.com.etyllica.collision.CollisionDetector;
 import br.com.etyllica.core.graphics.Graphic;
 import br.com.etyllica.core.graphics.SVGColor;
 import br.com.etyllica.layer.GeometricLayer;
@@ -56,7 +57,7 @@ public class RectangleContainer implements Container {
 
 	@Override
 	public boolean colide(int mouseX, int mouseY) {
-		return rectangle.colideRectPoint(mouseX, mouseY);
+		return CollisionDetector.colideRectPoint(rectangle, mouseX, mouseY);
 	}
 
 	@Override
