@@ -1,3 +1,4 @@
+package examples.crypt;
 import org.mindrot.BCrypt;
 
 
