@@ -8,7 +8,7 @@ public class PathsExample {
 
 		System.out.println("Desktop: "+PathHelper.desktopDirectory());
 		
-		System.out.println("ProgramFiles: "+PathHelper.desktopDirectory());
+		System.out.println("ProgramFiles: "+PathHelper.programFilesDirectory());
 
 	}
 }
