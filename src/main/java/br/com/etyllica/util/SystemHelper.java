@@ -20,7 +20,7 @@ public class SystemHelper {
 	public static String getOSName() {
 		
 		return System.getProperty ("os.name");
-		
+		 
 	}
 	
 	public static String getOSVersion() {

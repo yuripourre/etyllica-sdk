@@ -62,7 +62,7 @@ public class TitleArrow extends Panel {
 		
 		g.setColor(baseColor);
 		
-		g.setBasicStroke(1);
+		g.setLineWidth(1);
 
 		g.setPaint(leftPaint);
 		

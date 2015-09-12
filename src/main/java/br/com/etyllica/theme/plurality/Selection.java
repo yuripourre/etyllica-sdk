@@ -23,7 +23,7 @@ public class Selection extends Panel {
 		
 		g.setColor(baseColor);
 
-		g.setBasicStroke(1);
+		g.setLineWidth(1);
 
 		drawThinCorners(g);
 

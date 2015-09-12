@@ -2,32 +2,17 @@ package br.com.etyllica.sdk.component;
 
 import java.awt.Color;
 
-import br.com.etyllica.collision.CollisionDetector;
+import br.com.etyllica.awt.SVGColor;
 import br.com.etyllica.core.graphics.Graphic;
-import br.com.etyllica.core.graphics.SVGColor;
-import br.com.etyllica.layer.GeometricLayer;
+import br.com.etyllica.layer.Layer;
 
-public class RectangleContainer implements Container {
+public class RectangleContainer extends Layer {
 
 	private Color color = SVGColor.TRANSPARENT;
-	
 	private Color borderColor = Color.BLACK;
-	
-	private GeometricLayer rectangle;
-	
-	public RectangleContainer(int w, int h) {
-		super();
 		
-		final int defaultWidth = 200;
-		final int defaultHeight = 50;
-		
-		rectangle = new GeometricLayer(w/2-defaultWidth/2, h/2-defaultHeight/2);
-	}
-	
 	public RectangleContainer(int x, int y, int w, int h) {
-		super();
-				
-		rectangle = new GeometricLayer(x, y, w, h);
+		super(x,y,w,h);
 	}
 
 	public Color getColor() {
@@ -48,26 +33,16 @@ public class RectangleContainer implements Container {
 
 	@Override
 	public void draw(Graphic g) {
+		int sw = (int)(utilWidth()*scaleX);
+		int sh = (int)(utilHeight()*scaleY);
+				
+		int offsetX = (int)(utilWidth()*(1-scaleX))/2;
+		int offsetY = (int)(utilHeight()*(1-scaleY))/2;
+		
 		g.setColor(color);
-		g.fillRect(rectangle);
+		g.fillRect(x+offsetX, y+offsetY, sw, sh);
 		
 		g.setColor(borderColor);
-		g.drawRect(rectangle);
+		g.drawRect(x+offsetX, y+offsetY, sw, sh);
 	}
-
-	@Override
-	public boolean colide(int mouseX, int mouseY) {
-		return CollisionDetector.colideRectPoint(rectangle, mouseX, mouseY);
-	}
-
-	@Override
-	public GeometricLayer getBounds() {
-		return rectangle;
-	}
-
-	@Override
-	public void onResize(int x, int y, int w, int h) {
-		rectangle.setBounds(x, y, w, h);
-	}
-
 }

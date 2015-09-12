@@ -4,26 +4,37 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.etyllica.awt.components.chooser.FileChooser;
+import br.com.etyllica.awt.components.chooser.SelectFileListener;
 import br.com.etyllica.core.context.Application;
 import br.com.etyllica.core.event.GUIEvent;
 import br.com.etyllica.core.event.KeyEvent;
+import br.com.etyllica.core.event.MouseButton;
 import br.com.etyllica.core.event.PointerEvent;
 import br.com.etyllica.core.graphics.Graphic;
 import br.com.etyllica.gui.selection.Resizer;
+import br.com.etyllica.layer.ImageLayer;
 import br.com.etyllica.layer.Layer;
+import br.com.etyllica.layer.StaticLayer;
+import br.com.etyllica.loader.image.ImageLoader;
 import br.com.etyllica.sdk.component.RectangleContainer;
+import br.com.etyllica.util.PathHelper;
 
-public class SDKApplication extends Application {
+public class FileExample extends Application implements SelectFileListener {
 
 	private Resizer resizer;
+	
+	private FileChooser fc;
 
 	private RectangleContainer blueComponent;
 	private RectangleContainer redComponent;
 	private RectangleContainer yellowComponent;
-	
+		
 	private List<Layer> layers;
+	
+	private int px, py;
 
-	public SDKApplication(int w, int h) {
+	public FileExample(int w, int h) {
 		super(w, h);
 	}
 
@@ -33,7 +44,10 @@ public class SDKApplication extends Application {
 		resizer = new Resizer(this);
 
 		layers = new ArrayList<Layer>();
-				
+		
+		ImageLayer hello = new ImageLayer(200,100,"hello.png");
+		layers.add(hello);
+		
 		blueComponent = new RectangleContainer(40, 100, 200, 80);
 		blueComponent.setBorderColor(Color.BLUE);
 		layers.add(blueComponent);
@@ -46,6 +60,9 @@ public class SDKApplication extends Application {
 		yellowComponent.setColor(Color.YELLOW);
 		yellowComponent.setBorderColor(Color.BLACK);
 		layers.add(yellowComponent);
+
+		fc = new FileChooser(this.parent.getComponent(), PathHelper.currentDirectory());
+		fc.setListener(this);
 		
 		resizer.setLayers(layers);
 	}
@@ -62,14 +79,34 @@ public class SDKApplication extends Application {
 
 	@Override
 	public GUIEvent updateMouse(PointerEvent event) {
+	
+		if(event.isButtonDown(MouseButton.MOUSE_BUTTON_RIGHT)) {
+			px = event.getX();
+			py = event.getY();
+			fc.openDialog();
+		}
+		
 		resizer.handleEvent(event);
 		return GUIEvent.NONE;
 	}
-
+	
 	@Override
 	public GUIEvent updateKeyboard(KeyEvent event) {
 		resizer.handleKeyEvent(event);
 		return GUIEvent.NONE;
+	}
+	
+	@Override
+	public void onSelectFile(String path) {
+		System.out.println("Selected: "+path);
+		
+		StaticLayer image = ImageLoader.getInstance().loadImage(path, true);
+		System.out.println(image.getPath());
+		
+		ImageLayer layer = new ImageLayer(px, py);
+		layer.cloneLayer(image);
+		
+		layers.add(layer);
 	}
 
 }

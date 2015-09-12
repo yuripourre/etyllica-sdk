@@ -4,14 +4,14 @@ import java.awt.Color;
 import java.awt.Point;
 import java.awt.geom.Arc2D;
 
-import br.com.etyllica.context.Application;
+import br.com.etyllica.awt.SVGColor;
+import br.com.etyllica.awt.paint.ConicalGradientPaint;
+import br.com.etyllica.core.context.Application;
+import br.com.etyllica.core.context.UpdateIntervalListener;
 import br.com.etyllica.core.event.GUIEvent;
 import br.com.etyllica.core.event.KeyEvent;
 import br.com.etyllica.core.event.PointerEvent;
 import br.com.etyllica.core.graphics.Graphic;
-import br.com.etyllica.core.graphics.SVGColor;
-import br.com.etyllica.image.paint.ConicalGradientPaint;
-import br.com.etyllica.theme.ThemeManager;
 import br.com.etyllica.theme.darkness.RoundSlider;
 
 /**
@@ -21,7 +21,7 @@ import br.com.etyllica.theme.darkness.RoundSlider;
  * 
  */
 
-public class DarknessMedUI extends Application {
+public class DarknessMedUI extends Application implements UpdateIntervalListener {
 
 	private int mx = 0;
 	
@@ -72,7 +72,7 @@ public class DarknessMedUI extends Application {
 				new Point(w / 2, h / 2),
 				0.5f, new float[]{angle, extent}, colors);
 		
-		updateAtFixedRate(50);
+		updateAtFixedRate(50, this);
 		
 		loading = 100;
 	}
@@ -109,7 +109,7 @@ public class DarknessMedUI extends Application {
 		
 		g.setPaint(rgp);
 		
-		g.setBasicStroke(10f);
+		g.setLineWidth(10f);
 				
 		Arc2D rightArc = new Arc2D.Double(mx-radius, my-radius, aw*2, ah*2, angle, -value, Arc2D.OPEN);
 				
@@ -134,7 +134,7 @@ public class DarknessMedUI extends Application {
 	@Override
 	public GUIEvent updateKeyboard(KeyEvent event) {
 		
-		if(event.isKeyDown(KeyEvent.TSK_RIGHT_ARROW)) {
+		if(event.isKeyDown(KeyEvent.VK_RIGHT_ARROW)) {
 			
 			angle+=5;
 			

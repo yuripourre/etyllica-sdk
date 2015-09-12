@@ -1,12 +1,12 @@
 package examples.gui.mouse;
 
-import br.com.etyllica.context.Application;
+import br.com.etyllica.core.context.Application;
 import br.com.etyllica.core.event.GUIEvent;
 import br.com.etyllica.core.event.KeyEvent;
+import br.com.etyllica.core.event.MouseButton;
+import br.com.etyllica.core.event.MouseState;
 import br.com.etyllica.core.event.PointerEvent;
 import br.com.etyllica.core.graphics.Graphic;
-import br.com.etyllica.core.input.mouse.MouseButton;
-import br.com.etyllica.core.input.mouse.MouseState;
 
 public class MouseStateApplication extends Application {
 		

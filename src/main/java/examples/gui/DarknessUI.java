@@ -6,12 +6,13 @@ import java.awt.Shape;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Ellipse2D;
 
-import br.com.etyllica.context.Application;
+import br.com.etyllica.awt.SVGColor;
+import br.com.etyllica.core.context.Application;
+import br.com.etyllica.core.context.UpdateIntervalListener;
 import br.com.etyllica.core.event.GUIEvent;
 import br.com.etyllica.core.event.KeyEvent;
 import br.com.etyllica.core.event.PointerEvent;
 import br.com.etyllica.core.graphics.Graphic;
-import br.com.etyllica.core.graphics.SVGColor;
 
 /**
  * Concept based on Star Trek: Into Darkness - Surveillance UI
@@ -20,7 +21,7 @@ import br.com.etyllica.core.graphics.SVGColor;
  * 
  */
 
-public class DarknessUI extends Application {
+public class DarknessUI extends Application implements UpdateIntervalListener {
 
 	private int mx = 0;
 	
@@ -82,7 +83,7 @@ public class DarknessUI extends Application {
 		
 		createUI(mx, my);
 		
-		updateAtFixedRate(50);
+		updateAtFixedRate(50, this);
 		
 		loading = 100;
 	}
@@ -141,16 +142,16 @@ public class DarknessUI extends Application {
 		
 		g.setColor(SVGColor.GHOST_WHITE);
 
-		g.setBasicStroke(10f);
+		g.setLineWidth(10f);
 		g.draw(leftArc);
 		
-		g.setBasicStroke(1f);
+		g.setLineWidth(1f);
 		g.draw(rightLine);
 		
-		g.setBasicStroke(2f);
+		g.setLineWidth(2f);
 		g.draw(centerCircle);
 		
-		g.setBasicStroke(8f);		
+		g.setLineWidth(8f);		
 
 		g.draw(centerLeftArc);
 		

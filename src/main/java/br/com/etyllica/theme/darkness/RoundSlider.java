@@ -4,10 +4,9 @@ import java.awt.Color;
 import java.awt.Point;
 import java.awt.geom.Arc2D;
 
+import br.com.etyllica.awt.paint.ConicalGradientPaint;
 import br.com.etyllica.core.graphics.Graphic;
 import br.com.etyllica.gui.Slider;
-import br.com.etyllica.image.paint.ConicalGradientPaint;
-import br.com.etyllica.theme.ThemeManager;
 
 public class RoundSlider extends Slider {
 	
@@ -60,13 +59,13 @@ public class RoundSlider extends Slider {
 	@Override
 	public void draw(Graphic g){
 
-		g.setBasicStroke(12f);
+		g.setLineWidth(12f);
 		
 		g.setAlpha(30);
 		g.setColor(startColor);
 		g.drawArc(x, y, w, h, 0, 360);
 		
-		g.setBasicStroke(10f);
+		g.setLineWidth(10f);
 		
 		g.setAlpha(100);
 		

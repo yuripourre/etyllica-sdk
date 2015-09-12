@@ -2,13 +2,12 @@ package examples.gui;
 
 import java.awt.Color;
 
-import br.com.etyllica.context.Application;
+import br.com.etyllica.awt.SVGColor;
+import br.com.etyllica.core.context.Application;
 import br.com.etyllica.core.event.Action;
 import br.com.etyllica.core.event.GUIEvent;
 import br.com.etyllica.core.event.KeyEvent;
-import br.com.etyllica.core.event.PointerEvent;
 import br.com.etyllica.core.graphics.Graphic;
-import br.com.etyllica.core.graphics.SVGColor;
 import br.com.etyllica.gui.Button;
 import br.com.etyllica.gui.label.TextLabel;
 import br.com.etyllica.theme.EtyllicTheme;
@@ -122,24 +121,17 @@ public class ThemeChanger extends Application {
 	}
 
 	@Override
-	public GUIEvent updateMouse(PointerEvent event) {
-		// TODO Auto-generated method stub
-		return GUIEvent.NONE;
-	}
-
-	@Override
 	public GUIEvent updateKeyboard(KeyEvent event) {
 		
-		if(event.isKeyDown(KeyEvent.TSK_0)) {
+		if(event.isKeyDown(KeyEvent.VK_0)) {
 			changeToDefaultTheme();
 		}
 		
-		if(event.isKeyDown(KeyEvent.TSK_1)) {
+		if(event.isKeyDown(KeyEvent.VK_1)) {
 			changeToMonoTheme();
 		}
 		
-		// TODO Auto-generated method stub
-		return GUIEvent	.NONE;
+		return GUIEvent.NONE;
 	}
 
 }

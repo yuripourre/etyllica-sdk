@@ -1,14 +1,9 @@
 
 
 import br.com.etyllica.EtyllicaFrame;
-import br.com.etyllica.context.Application;
+import br.com.etyllica.core.context.Application;
+import br.com.etyllica.sdk.FileExample;
 import br.com.etyllica.sdk.SDKApplication;
-import examples.gui.AccessibilityApplication;
-import examples.gui.DarknessMedUI;
-import examples.gui.DarknessUI;
-import examples.gui.MultiLanguageApplication;
-import examples.gui.ThemeChanger;
-import examples.gui.mouse.MouseStateApplication;
 
 public class GUIExamples extends EtyllicaFrame {
 
@@ -22,18 +17,18 @@ public class GUIExamples extends EtyllicaFrame {
 	}
 
 	public static void main(String[] args) {
-		
 		GUIExamples gui = new GUIExamples();
-		
 		gui.init();
-		
 	}
 
 	@Override
 	public Application startApplication() {
 		
+		initialSetup("../");
+		
 		//return new ThemeChanger(w, h);
-		return new SDKApplication(w, h);
+		//return new SDKApplication(w, h);
+		return new FileExample(w, h);
 		//return new MultiLanguageApplication(w, h);
 		//return new AccessibilityApplication(w, h);
 		//return new MouseStateApplication(w, h);
