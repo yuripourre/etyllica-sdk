@@ -8,7 +8,6 @@ import br.com.etyllica.awt.SVGColor;
 import br.com.etyllica.awt.paint.ConicalGradientPaint;
 import br.com.etyllica.core.context.Application;
 import br.com.etyllica.core.context.UpdateIntervalListener;
-import br.com.etyllica.core.event.GUIEvent;
 import br.com.etyllica.core.event.KeyEvent;
 import br.com.etyllica.core.event.PointerEvent;
 import br.com.etyllica.core.graphics.Graphic;
@@ -122,17 +121,15 @@ public class DarknessMedUI extends Application implements UpdateIntervalListener
 	}
 
 	@Override
-	public GUIEvent updateMouse(PointerEvent event) {
+	public void updateMouse(PointerEvent event) {
 		
 		mx = event.getX();
-		
 		my = event.getY();
 		
-		return null;
 	}
 
 	@Override
-	public GUIEvent updateKeyboard(KeyEvent event) {
+	public void updateKeyboard(KeyEvent event) {
 		
 		if(event.isKeyDown(KeyEvent.VK_RIGHT_ARROW)) {
 			
@@ -146,9 +143,6 @@ public class DarknessMedUI extends Application implements UpdateIntervalListener
 			
 			rgp = new ConicalGradientPaint(true, new Point(mx, my), 0.0f, new float[]{angle, extent}, colors);
 		}
-		
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

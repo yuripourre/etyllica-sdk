@@ -7,7 +7,6 @@ import java.util.List;
 import br.com.etyllica.awt.components.chooser.FileChooser;
 import br.com.etyllica.awt.components.chooser.SelectFileListener;
 import br.com.etyllica.core.context.Application;
-import br.com.etyllica.core.event.GUIEvent;
 import br.com.etyllica.core.event.KeyEvent;
 import br.com.etyllica.core.event.MouseButton;
 import br.com.etyllica.core.event.PointerEvent;
@@ -78,7 +77,7 @@ public class FileExample extends Application implements SelectFileListener {
 	}
 
 	@Override
-	public GUIEvent updateMouse(PointerEvent event) {
+	public void updateMouse(PointerEvent event) {
 	
 		if(event.isButtonDown(MouseButton.MOUSE_BUTTON_RIGHT)) {
 			px = event.getX();
@@ -87,13 +86,11 @@ public class FileExample extends Application implements SelectFileListener {
 		}
 		
 		resizer.handleEvent(event);
-		return GUIEvent.NONE;
 	}
 	
 	@Override
-	public GUIEvent updateKeyboard(KeyEvent event) {
+	public void updateKeyboard(KeyEvent event) {
 		resizer.handleKeyEvent(event);
-		return GUIEvent.NONE;
 	}
 	
 	@Override

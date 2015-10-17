@@ -33,45 +33,45 @@ public class ThemeChanger extends Application {
 		Button buttonWhite = new Button(20,offsetY+30,120,40);
 		buttonWhite.setLabel(new TextLabel("WHITE!"));
 		buttonWhite.addAction(GUIEvent.MOUSE_LEFT_BUTTON_UP, new Action(this, "turnWhite"));
-		add(buttonWhite);		
+		addView(buttonWhite);		
 		
 		Button buttonBlue = new Button(20,offsetY+80,120,40);
 		buttonBlue.setLabel(new TextLabel("BLUE!"));
 		buttonBlue.addAction(GUIEvent.MOUSE_LEFT_BUTTON_UP, new Action(this, "turnBlue"));
-		add(buttonBlue);
+		addView(buttonBlue);
 		
 		Button buttonSeaGreen = new Button(20,offsetY+130,120,40);
 		buttonSeaGreen.setLabel(new TextLabel("SEA GREEN!"));
 		buttonSeaGreen.addAction(GUIEvent.MOUSE_LEFT_BUTTON_UP, new Action(this, "turnSeaGreen"));
-		add(buttonSeaGreen);
+		addView(buttonSeaGreen);
 		
 		Button buttonOrchid = new Button(20,offsetY+180,120,40);
 		buttonOrchid.setRoundness(10);
 		buttonOrchid.setLabel(new TextLabel("ORCHID!"));
 		buttonOrchid.addAction(GUIEvent.MOUSE_LEFT_BUTTON_UP, new Action(this, "turnOrchid"));
-		add(buttonOrchid);
+		addView(buttonOrchid);
 		
 		Button buttonOrange = new Button(20,offsetY+230,120,40);
 		buttonOrange.setRoundness(10);
 		buttonOrange.setLabel(new TextLabel("ORANGE!"));
 		buttonOrange.addAction(GUIEvent.MOUSE_LEFT_BUTTON_UP, new Action(this, "turnOrange"));
-		add(buttonOrange);
+		addView(buttonOrange);
 		
 		Button buttonCrimson = new Button(20,offsetY+280,120,40);
 		buttonCrimson.setRoundness(10);
 		buttonCrimson.setLabel(new TextLabel("CRIMSON!"));
 		buttonCrimson.addAction(GUIEvent.MOUSE_LEFT_BUTTON_UP, new Action(this, "turnCrimson"));
-		add(buttonCrimson);
+		addView(buttonCrimson);
 		
 		Button defaultTheme = new Button(420,offsetY+30,120,40);
 		defaultTheme.setLabel(new TextLabel("Default Theme"));
 		defaultTheme.addAction(GUIEvent.MOUSE_LEFT_BUTTON_UP, new Action(this, "changeToDefaultTheme"));
-		add(defaultTheme);
+		addView(defaultTheme);
 		
 		Button monoTheme = new Button(420,offsetY+90,120,40);
 		monoTheme.setLabel(new TextLabel("Mono Theme"));
 		monoTheme.addAction(GUIEvent.MOUSE_LEFT_BUTTON_UP, new Action(this, "changeToMonoTheme"));
-		add(monoTheme);
+		addView(monoTheme);
 		
 		loading = 100;
 	}
@@ -121,7 +121,7 @@ public class ThemeChanger extends Application {
 	}
 
 	@Override
-	public GUIEvent updateKeyboard(KeyEvent event) {
+	public void updateKeyboard(KeyEvent event) {
 		
 		if(event.isKeyDown(KeyEvent.VK_0)) {
 			changeToDefaultTheme();
@@ -130,8 +130,6 @@ public class ThemeChanger extends Application {
 		if(event.isKeyDown(KeyEvent.VK_1)) {
 			changeToMonoTheme();
 		}
-		
-		return GUIEvent.NONE;
 	}
 
 }

@@ -160,19 +160,11 @@ public class DarknessUI extends Application implements UpdateIntervalListener {
 	}
 
 	@Override
-	public GUIEvent updateMouse(PointerEvent event) {
+	public void updateMouse(PointerEvent event) {
 		
 		mx = event.getX();
-		
 		my = event.getY();
 		
-		return null;
-	}
-
-	@Override
-	public GUIEvent updateKeyboard(KeyEvent event) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

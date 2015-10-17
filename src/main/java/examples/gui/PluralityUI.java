@@ -3,8 +3,6 @@ package examples.gui;
 import java.awt.Color;
 
 import br.com.etyllica.core.context.Application;
-import br.com.etyllica.core.event.GUIEvent;
-import br.com.etyllica.core.event.KeyEvent;
 import br.com.etyllica.core.event.PointerEvent;
 import br.com.etyllica.core.graphics.Graphic;
 import br.com.etyllica.theme.plurality.LeftPanel;
@@ -99,21 +97,12 @@ public class PluralityUI extends Application {
 	}
 
 	@Override
-	public GUIEvent updateMouse(PointerEvent event) {
+	public void updateMouse(PointerEvent event) {
 
 		mx = event.getX(); 
-
 		my = event.getY();
 		
 		selection.setBounds(mx-rectW/2, my-rectH/2, rectW, rectH);
-
-		return null;
 	}
-
-	@Override
-	public GUIEvent updateKeyboard(KeyEvent event) {
-		// TODO Auto-generated method stub
-		return null;
-	}	
 
 }
