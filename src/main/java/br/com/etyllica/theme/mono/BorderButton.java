@@ -2,10 +2,10 @@ package br.com.etyllica.theme.mono;
 
 import br.com.etyllica.core.event.GUIEvent;
 import br.com.etyllica.core.graphics.Graphic;
-import br.com.etyllica.gui.factory.DefaultButton;
+import br.com.etyllica.gui.base.BaseButton;
 import br.com.etyllica.theme.Theme;
 
-public class BorderButton extends DefaultButton{
+public class BorderButton extends BaseButton {
 
 	public BorderButton(int x, int y, int w, int h) {
 		super(x, y, w, h);

@@ -2,24 +2,22 @@ package br.com.etyllica.theme.mono;
 
 import java.awt.Color;
 
-import br.com.etyllica.gui.factory.DefaultButton;
-import br.com.etyllica.theme.Theme;
+import br.com.etyllica.gui.base.BaseButton;
+import br.com.etyllica.theme.etyllic.EtyllicTheme;
 
-public class EtyllicMonoTheme extends Theme {
+public class EtyllicMonoTheme extends EtyllicTheme {
 	
 	public EtyllicMonoTheme(){
 		super();
 		
 		this.borderColor = Color.BLACK;
-		
 		this.buttonColor = Color.WHITE;
-		
 		this.buttonOnMouse = Color.GRAY;
 	}
 	
-	public DefaultButton createButton(int x, int y, int w, int h){
-		DefaultButton button = new BorderButton(x, y, w, h);
-		button.setTheme(this);
+	@Override
+	public BaseButton createButton(int x, int y, int w, int h){
+		BaseButton button = new BorderButton(x, y, w, h);
 		return button;
 	}
 	

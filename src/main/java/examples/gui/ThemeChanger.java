@@ -10,8 +10,8 @@ import br.com.etyllica.core.event.KeyEvent;
 import br.com.etyllica.core.graphics.Graphic;
 import br.com.etyllica.gui.Button;
 import br.com.etyllica.gui.label.TextLabel;
-import br.com.etyllica.theme.EtyllicTheme;
 import br.com.etyllica.theme.ThemeManager;
+import br.com.etyllica.theme.etyllic.EtyllicTheme;
 import br.com.etyllica.theme.mono.EtyllicMonoTheme;
 
 public class ThemeChanger extends Application {

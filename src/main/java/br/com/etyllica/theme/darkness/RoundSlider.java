@@ -46,7 +46,7 @@ public class RoundSlider extends Slider {
 	}
 	
 	@Override
-	public void setValue(int value) {
+	public void setValue(float value) {
 		
 		this.value = value;
 		
@@ -78,7 +78,7 @@ public class RoundSlider extends Slider {
 		g.setAlpha(80);
 		
 		g.setColor(endColor);
-		g.drawString(x, y, w, h, Integer.toString(value));
+		g.drawString(x, y, w, h, Float.toString(value));
 		g.setAlpha(100);
 		
 	}
