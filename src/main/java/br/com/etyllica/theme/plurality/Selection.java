@@ -2,7 +2,7 @@ package br.com.etyllica.theme.plurality;
 
 import java.awt.Color;
 
-import br.com.etyllica.core.graphics.Graphic;
+import br.com.etyllica.core.graphics.Graphics;
 import br.com.etyllica.gui.Panel;
 import br.com.etyllica.theme.ThemeManager;
 
@@ -17,7 +17,7 @@ public class Selection extends Panel {
 	}
 	
 	@Override
-	public void draw(Graphic g) {
+	public void draw(Graphics g) {
 		
 		Color baseColor = ThemeManager.getInstance().getTheme().getBaseColor();
 		
@@ -29,7 +29,7 @@ public class Selection extends Panel {
 
 	}
 
-	private void drawThinCorners(Graphic g) {
+	private void drawThinCorners(Graphics g) {
 
 		drawUpperLeftCorner(x, y, w, h, g);
 		
@@ -41,7 +41,7 @@ public class Selection extends Panel {
 
 	}
 
-	private void drawUpperLeftCorner(int x, int y, int w, int h, Graphic g) {
+	private void drawUpperLeftCorner(int x, int y, int w, int h, Graphics g) {
 
 		//Flipped Diagonal
 		g.drawLine(x-negativeOffset, y-negativeOffset, x-negativeOffset+size, y-negativeOffset+size);
@@ -59,7 +59,7 @@ public class Selection extends Panel {
 
 	}
 	
-	private void drawUpperRightCorner(int x, int y, int w, int h, Graphic g) {
+	private void drawUpperRightCorner(int x, int y, int w, int h, Graphics g) {
 
 		//Flipped Diagonal
 		g.drawLine(x+w+negativeOffset, y-negativeOffset, x+w+negativeOffset-size, y-negativeOffset+size);
@@ -77,7 +77,7 @@ public class Selection extends Panel {
 
 	}
 	
-	private void drawLowerLeftCorner(int x, int y, int w, int h, Graphic g) {
+	private void drawLowerLeftCorner(int x, int y, int w, int h, Graphics g) {
 
 		//Flipped Diagonal
 		g.drawLine(x-negativeOffset, y+h+negativeOffset, x-negativeOffset+size, y+h+negativeOffset-size);
@@ -95,7 +95,7 @@ public class Selection extends Panel {
 
 	}
 	
-	private void drawLowerRightCorner(int x, int y, int w, int h, Graphic g) {
+	private void drawLowerRightCorner(int x, int y, int w, int h, Graphics g) {
 
 		//Flipped Diagonal
 		g.drawLine(x+w+negativeOffset, y+h+negativeOffset, x+w+negativeOffset-size, y+h+negativeOffset-size);

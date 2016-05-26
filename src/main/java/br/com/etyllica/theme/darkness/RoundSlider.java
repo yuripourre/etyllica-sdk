@@ -5,7 +5,7 @@ import java.awt.Point;
 import java.awt.geom.Arc2D;
 
 import br.com.etyllica.awt.paint.ConicalGradientPaint;
-import br.com.etyllica.core.graphics.Graphic;
+import br.com.etyllica.core.graphics.Graphics;
 import br.com.etyllica.gui.Slider;
 
 public class RoundSlider extends Slider {
@@ -57,7 +57,7 @@ public class RoundSlider extends Slider {
 	}
 
 	@Override
-	public void draw(Graphic g){
+	public void draw(Graphics g){
 
 		g.setLineWidth(12f);
 		

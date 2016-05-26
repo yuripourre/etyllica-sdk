@@ -2,7 +2,7 @@ package br.com.etyllica.theme.plurality;
 
 import java.awt.Color;
 
-import br.com.etyllica.core.graphics.Graphic;
+import br.com.etyllica.core.graphics.Graphics;
 import br.com.etyllica.gui.Panel;
 import br.com.etyllica.theme.ThemeManager;
 
@@ -24,7 +24,7 @@ public class LeftPanel extends Panel {
 	}
 	
 	@Override
-	public void draw(Graphic g) {
+	public void draw(Graphics g) {
 		
 		Color baseColor = ThemeManager.getInstance().getTheme().getBaseColor();		
 		
@@ -36,7 +36,7 @@ public class LeftPanel extends Panel {
 
 	}
 
-	private void drawThinCorners(Graphic g) {
+	private void drawThinCorners(Graphics g) {
 
 		drawUpperLeftCorner(x, y, w, h, g);
 		
@@ -48,7 +48,7 @@ public class LeftPanel extends Panel {
 
 	}
 
-	private void drawUpperLeftCorner(int x, int y, int w, int h, Graphic g) {
+	private void drawUpperLeftCorner(int x, int y, int w, int h, Graphics g) {
 		
 		//Diagonal
 		g.drawLine(x+size+negativeOffset, y, x, y+size+negativeOffset);
@@ -68,7 +68,7 @@ public class LeftPanel extends Panel {
 		
 	}
 	
-	private void drawUpperRightCorner(int x, int y, int w, int h, Graphic g) {
+	private void drawUpperRightCorner(int x, int y, int w, int h, Graphics g) {
 				
 		int anchorX = (int)(x+w-size*scaleSize-negativeOffset);
 		int anchorY = (int)(y+size*scaleSize+negativeOffset);
@@ -86,7 +86,7 @@ public class LeftPanel extends Panel {
 
 	}
 	
-	private void drawLowerLeftCorner(int x, int y, int w, int h, Graphic g) {
+	private void drawLowerLeftCorner(int x, int y, int w, int h, Graphics g) {
 
 		//Diagonal
 		g.drawLine(x+size+negativeOffset, y+h, x, y+h-size-negativeOffset);
@@ -101,7 +101,7 @@ public class LeftPanel extends Panel {
 
 	}
 	
-	private void drawLowerRightCorner(int x, int y, int w, int h, Graphic g) {
+	private void drawLowerRightCorner(int x, int y, int w, int h, Graphics g) {
 		
 		int anchorX = (int)(x+w-size*scaleSize-negativeOffset);
 		int anchorY = (int)(y+h-size*scaleSize-negativeOffset);

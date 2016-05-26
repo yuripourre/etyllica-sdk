@@ -5,7 +5,7 @@ import java.awt.GradientPaint;
 import java.awt.Paint;
 import java.awt.Polygon;
 
-import br.com.etyllica.core.graphics.Graphic;
+import br.com.etyllica.core.graphics.Graphics;
 import br.com.etyllica.gui.Panel;
 
 public class TitleArrow extends Panel {
@@ -58,7 +58,7 @@ public class TitleArrow extends Panel {
 	}
 		
 	@Override
-	public void draw(Graphic g) {
+	public void draw(Graphics g) {
 		
 		g.setColor(baseColor);
 		

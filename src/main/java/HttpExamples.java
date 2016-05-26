@@ -1,9 +1,9 @@
-import br.com.etyllica.EtyllicaFrame;
+import br.com.etyllica.Etyllica;
 import br.com.etyllica.core.context.Application;
 import examples.http.HTTPApplication;
 
 
-public class HttpExamples extends EtyllicaFrame {
+public class HttpExamples extends Etyllica {
 
 	public HttpExamples(int w, int h) {
 		super(w, h);

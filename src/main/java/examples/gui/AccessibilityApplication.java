@@ -2,7 +2,7 @@ package examples.gui;
 
 import br.com.etyllica.core.Configuration;
 import br.com.etyllica.core.context.Application;
-import br.com.etyllica.core.graphics.Graphic;
+import br.com.etyllica.core.graphics.Graphics;
 import br.com.etyllica.gui.Button;
 
 public class AccessibilityApplication extends Application {
@@ -27,7 +27,7 @@ public class AccessibilityApplication extends Application {
 	}
 
 	@Override
-	public void draw(Graphic g) {
+	public void draw(Graphics g) {
 		// TODO Auto-generated method stub
 		
 	}

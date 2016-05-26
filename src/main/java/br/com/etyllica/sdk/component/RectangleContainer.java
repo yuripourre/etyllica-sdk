@@ -3,7 +3,7 @@ package br.com.etyllica.sdk.component;
 import java.awt.Color;
 
 import br.com.etyllica.awt.SVGColor;
-import br.com.etyllica.core.graphics.Graphic;
+import br.com.etyllica.core.graphics.Graphics;
 import br.com.etyllica.layer.Layer;
 
 public class RectangleContainer extends Layer {
@@ -32,7 +32,7 @@ public class RectangleContainer extends Layer {
 	}
 
 	@Override
-	public void draw(Graphic g) {
+	public void draw(Graphics g) {
 		int sw = (int)(utilWidth()*scaleX);
 		int sh = (int)(utilHeight()*scaleY);
 				

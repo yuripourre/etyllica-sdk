@@ -1,12 +1,12 @@
 
 
 import examples.gui.ThemeChanger;
-import br.com.etyllica.EtyllicaFrame;
+import br.com.etyllica.Etyllica;
 import br.com.etyllica.core.context.Application;
 import br.com.etyllica.sdk.FileExample;
 import br.com.etyllica.sdk.SDKApplication;
 
-public class GUIExamples extends EtyllicaFrame {
+public class GUIExamples extends Etyllica {
 
 	public GUIExamples(int w, int h) {
 		super(w, h);

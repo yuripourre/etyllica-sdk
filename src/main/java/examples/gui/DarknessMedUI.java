@@ -10,7 +10,7 @@ import br.com.etyllica.core.context.Application;
 import br.com.etyllica.core.context.UpdateIntervalListener;
 import br.com.etyllica.core.event.KeyEvent;
 import br.com.etyllica.core.event.PointerEvent;
-import br.com.etyllica.core.graphics.Graphic;
+import br.com.etyllica.core.graphics.Graphics;
 import br.com.etyllica.theme.darkness.RoundSlider;
 
 /**
@@ -91,7 +91,7 @@ public class DarknessMedUI extends Application implements UpdateIntervalListener
 	}
 	
 	@Override
-	public void draw(Graphic g) {
+	public void draw(Graphics g) {
 		
 		g.setColor(backgroundColor);
 

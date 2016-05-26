@@ -12,7 +12,7 @@ import br.com.etyllica.core.context.UpdateIntervalListener;
 import br.com.etyllica.core.event.GUIEvent;
 import br.com.etyllica.core.event.KeyEvent;
 import br.com.etyllica.core.event.PointerEvent;
-import br.com.etyllica.core.graphics.Graphic;
+import br.com.etyllica.core.graphics.Graphics;
 
 /**
  * Concept based on Star Trek: Into Darkness - Surveillance UI
@@ -132,7 +132,7 @@ public class DarknessUI extends Application implements UpdateIntervalListener {
 	}
 
 	@Override
-	public void draw(Graphic g) {
+	public void draw(Graphics g) {
 
 		g.setColor(new Color(0x17, 0x17, 0x17));
 		
