@@ -9,6 +9,8 @@ import br.com.etyllica.core.event.GUIEvent;
 import br.com.etyllica.core.event.KeyEvent;
 import br.com.etyllica.core.graphics.Graphics;
 import br.com.etyllica.gui.Button;
+import br.com.etyllica.gui.CheckBox;
+import br.com.etyllica.gui.TextField;
 import br.com.etyllica.gui.label.TextLabel;
 import br.com.etyllica.theme.ThemeManager;
 import br.com.etyllica.theme.etyllic.EtyllicTheme;
@@ -29,35 +31,36 @@ public class ThemeChanger extends Application {
 	public void load() {
 		
 		final int offsetY = 20;
+		final int buttonW = 170;
 		
-		Button buttonWhite = new Button(20,offsetY+30,120,40);
+		Button buttonWhite = new Button(20,offsetY+30,buttonW,40);
 		buttonWhite.setLabel(new TextLabel("WHITE!"));
 		buttonWhite.addAction(GUIEvent.MOUSE_LEFT_BUTTON_UP, new Action(this, "turnWhite"));
 		addView(buttonWhite);		
 		
-		Button buttonBlue = new Button(20,offsetY+80,120,40);
+		Button buttonBlue = new Button(20,offsetY+80,buttonW,40);
 		buttonBlue.setLabel(new TextLabel("BLUE!"));
 		buttonBlue.addAction(GUIEvent.MOUSE_LEFT_BUTTON_UP, new Action(this, "turnBlue"));
 		addView(buttonBlue);
 		
-		Button buttonSeaGreen = new Button(20,offsetY+130,120,40);
+		Button buttonSeaGreen = new Button(20,offsetY+130,buttonW,40);
 		buttonSeaGreen.setLabel(new TextLabel("SEA GREEN!"));
 		buttonSeaGreen.addAction(GUIEvent.MOUSE_LEFT_BUTTON_UP, new Action(this, "turnSeaGreen"));
 		addView(buttonSeaGreen);
 		
-		Button buttonOrchid = new Button(20,offsetY+180,120,40);
+		Button buttonOrchid = new Button(20,offsetY+180,buttonW,40);
 		buttonOrchid.setRoundness(10);
 		buttonOrchid.setLabel(new TextLabel("ORCHID!"));
 		buttonOrchid.addAction(GUIEvent.MOUSE_LEFT_BUTTON_UP, new Action(this, "turnOrchid"));
 		addView(buttonOrchid);
 		
-		Button buttonOrange = new Button(20,offsetY+230,120,40);
+		Button buttonOrange = new Button(20,offsetY+230,buttonW,40);
 		buttonOrange.setRoundness(10);
 		buttonOrange.setLabel(new TextLabel("ORANGE!"));
 		buttonOrange.addAction(GUIEvent.MOUSE_LEFT_BUTTON_UP, new Action(this, "turnOrange"));
 		addView(buttonOrange);
 		
-		Button buttonCrimson = new Button(20,offsetY+280,120,40);
+		Button buttonCrimson = new Button(20,offsetY+280,buttonW,40);
 		buttonCrimson.setRoundness(10);
 		buttonCrimson.setLabel(new TextLabel("CRIMSON!"));
 		buttonCrimson.addAction(GUIEvent.MOUSE_LEFT_BUTTON_UP, new Action(this, "turnCrimson"));
@@ -72,6 +75,13 @@ public class ThemeChanger extends Application {
 		monoTheme.setLabel(new TextLabel("Mono Theme"));
 		monoTheme.addAction(GUIEvent.MOUSE_LEFT_BUTTON_UP, new Action(this, "changeToMonoTheme"));
 		addView(monoTheme);
+		
+		CheckBox checkBox = new CheckBox(20,offsetY+330,40,40);
+		checkBox.setLabel(new TextLabel("X"));
+		addView(checkBox);
+		
+		TextField textField = new TextField(70,offsetY+330,120,40);		
+		addView(textField);
 		
 		loading = 100;
 	}
