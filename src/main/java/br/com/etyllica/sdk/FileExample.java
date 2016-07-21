@@ -106,4 +106,10 @@ public class FileExample extends Application implements SelectFileListener {
 		layers.add(layer);
 	}
 
+	@Override
+	public void onCancel() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

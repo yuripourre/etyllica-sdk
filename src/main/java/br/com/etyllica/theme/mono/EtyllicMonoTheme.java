@@ -11,8 +11,8 @@ public class EtyllicMonoTheme extends EtyllicTheme {
 		super();
 		
 		this.borderColor = Color.BLACK;
-		this.buttonColor = Color.WHITE;
-		this.buttonOnMouse = Color.GRAY;
+		this.baseColor = Color.WHITE;
+		this.selectionColor = Color.GRAY;
 	}
 	
 	@Override

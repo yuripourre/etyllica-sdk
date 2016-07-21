@@ -27,8 +27,8 @@ public class GUIExamples extends Etyllica {
 		
 		initialSetup("../");
 		
-		return new ThemeChanger(w, h);
-		//return new SDKApplication(w, h);
+		//return new ThemeChanger(w, h);
+		return new SDKApplication(w, h);
 		//return new FileExample(w, h);
 		//return new MultiLanguageApplication(w, h);
 		//return new AccessibilityApplication(w, h);

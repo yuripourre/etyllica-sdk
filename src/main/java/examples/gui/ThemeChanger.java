@@ -49,19 +49,16 @@ public class ThemeChanger extends Application {
 		addView(buttonSeaGreen);
 		
 		Button buttonOrchid = new Button(20,offsetY+180,buttonW,40);
-		buttonOrchid.setRoundness(10);
 		buttonOrchid.setLabel(new TextLabel("ORCHID!"));
 		buttonOrchid.addAction(GUIEvent.MOUSE_LEFT_BUTTON_UP, new Action(this, "turnOrchid"));
 		addView(buttonOrchid);
 		
 		Button buttonOrange = new Button(20,offsetY+230,buttonW,40);
-		buttonOrange.setRoundness(10);
 		buttonOrange.setLabel(new TextLabel("ORANGE!"));
 		buttonOrange.addAction(GUIEvent.MOUSE_LEFT_BUTTON_UP, new Action(this, "turnOrange"));
 		addView(buttonOrange);
 		
 		Button buttonCrimson = new Button(20,offsetY+280,buttonW,40);
-		buttonCrimson.setRoundness(10);
 		buttonCrimson.setLabel(new TextLabel("CRIMSON!"));
 		buttonCrimson.addAction(GUIEvent.MOUSE_LEFT_BUTTON_UP, new Action(this, "turnCrimson"));
 		addView(buttonCrimson);
@@ -77,7 +74,7 @@ public class ThemeChanger extends Application {
 		addView(monoTheme);
 		
 		CheckBox checkBox = new CheckBox(20,offsetY+330,40,40);
-		checkBox.setLabel(new TextLabel("X"));
+		checkBox.setChecker(new TextLabel("X"));
 		addView(checkBox);
 		
 		TextField textField = new TextField(70,offsetY+330,120,40);		
