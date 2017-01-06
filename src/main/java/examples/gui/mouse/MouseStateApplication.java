@@ -1,7 +1,7 @@
 package examples.gui.mouse;
 
 import br.com.etyllica.core.context.Application;
-import br.com.etyllica.core.event.MouseButton;
+import br.com.etyllica.core.event.MouseEvent;
 import br.com.etyllica.core.event.MouseState;
 import br.com.etyllica.core.event.PointerEvent;
 import br.com.etyllica.core.graphics.Graphics;
@@ -25,20 +25,20 @@ public class MouseStateApplication extends Application {
 	@Override
 	public void updateMouse(PointerEvent event) {
 		
-		if(event.isButtonDown(MouseButton.MOUSE_BUTTON_RIGHT)) {
+		if(event.isButtonDown(MouseEvent.MOUSE_BUTTON_RIGHT)) {
 			
 			changeMouseState(MouseState.WAIT);
 			
-		}else if(event.isButtonUp(MouseButton.MOUSE_BUTTON_RIGHT)) {
+		}else if(event.isButtonUp(MouseEvent.MOUSE_BUTTON_RIGHT)) {
 			
 			changeMouseState(MouseState.NORMAL);
 		}
 		
-		if(event.isButtonDown(MouseButton.MOUSE_BUTTON_MIDDLE)) {
+		if(event.isButtonDown(MouseEvent.MOUSE_BUTTON_MIDDLE)) {
 			
 			changeMouseState(MouseState.TEXT);
 			
-		}else if(event.isButtonUp(MouseButton.MOUSE_BUTTON_MIDDLE)) {
+		}else if(event.isButtonUp(MouseEvent.MOUSE_BUTTON_MIDDLE)) {
 			
 			changeMouseState(MouseState.NORMAL);
 		}
