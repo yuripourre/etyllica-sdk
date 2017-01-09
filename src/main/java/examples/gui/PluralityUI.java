@@ -85,13 +85,13 @@ public class PluralityUI extends Application {
 		
 		g.setFontSize(40f);
 		
-		g.drawStringShadow(title.getX(), title.getY()+offset, title.getW(), title.getH()+offset, THEME_NAME, Color.BLACK);
+		g.drawStringShadow(THEME_NAME, title.getX(), title.getY()+offset, title.getW(), title.getH()+offset, Color.BLACK);
 		
 		offset = 14;
 		
 		g.setFontSize(20f);
 		
-		g.drawStringShadow(title.getX(), title.getY()+offset, title.getW(), title.getH()+offset, AUTHOR_NAME, Color.BLACK);
+		g.drawStringShadow(AUTHOR_NAME, title.getX(), title.getY()+offset, title.getW(), title.getH()+offset, Color.BLACK);
 		
 				
 	}

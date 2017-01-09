@@ -116,7 +116,7 @@ public class DarknessMedUI extends Application implements UpdateIntervalListener
 		
 		g.setFontSize(30);
 		g.setColor(startColor);
-		g.drawString(mx-radius, my-radius, (float)aw*2, (float)ah*2, Float.toString(value));
+		g.drawString(Float.toString(value), mx-radius, my-radius, (float)aw*2, (float)ah*2);
 						
 	}
 

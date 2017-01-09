@@ -78,7 +78,7 @@ public class RoundSlider extends Slider {
 		g.setAlpha(80);
 		
 		g.setColor(endColor);
-		g.drawString(x, y, w, h, Float.toString(value));
+		g.drawString(Float.toString(value), x, y, w, h);
 		g.setAlpha(100);
 		
 	}
