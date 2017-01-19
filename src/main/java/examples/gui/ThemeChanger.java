@@ -12,7 +12,7 @@ import br.com.etyllica.gui.Button;
 import br.com.etyllica.gui.CheckBox;
 import br.com.etyllica.gui.TextField;
 import br.com.etyllica.gui.label.TextLabel;
-import br.com.etyllica.theme.ThemeManager;
+import br.com.etyllica.gui.theme.ThemeManager;
 import br.com.etyllica.theme.etyllic.EtyllicTheme;
 import br.com.etyllica.theme.mono.EtyllicMonoTheme;
 

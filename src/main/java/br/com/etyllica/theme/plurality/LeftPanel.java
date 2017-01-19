@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import br.com.etyllica.core.graphics.Graphics;
 import br.com.etyllica.gui.Panel;
-import br.com.etyllica.theme.ThemeManager;
+import br.com.etyllica.gui.theme.ThemeManager;
 
 public class LeftPanel extends Panel {
 	

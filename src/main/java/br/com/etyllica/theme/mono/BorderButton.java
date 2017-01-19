@@ -2,7 +2,7 @@ package br.com.etyllica.theme.mono;
 
 import br.com.etyllica.core.graphics.Graphics;
 import br.com.etyllica.gui.base.BaseButton;
-import br.com.etyllica.theme.Theme;
+import br.com.etyllica.gui.theme.Theme;
 
 public class BorderButton extends BaseButton {
 
